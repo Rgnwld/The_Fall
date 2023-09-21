@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bd6biawctirtl"]
+
+[ext_resource type="Script" path="res://Scripts/Items/BulletBehaviour.gd" id="1_c5gbi"]
+[ext_resource type="Texture2D" uid="uid://cfbb2i15ykisq" path="res://Assets/bullet.png" id="2_002je"]
+[ext_resource type="PackedScene" uid="uid://2dk7nukar0kv" path="res://Prefabs/VFX/trail_2d.tscn" id="3_ctbcs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_envqi"]
+radius = 8.0
+
+[node name="bullet" type="RigidBody2D"]
+disable_mode = 2
+collision_layer = 32
+collision_mask = 10
+gravity_scale = 0.0
+continuous_cd = 2
+max_contacts_reported = 1
+contact_monitor = true
+freeze_mode = 1
+script = ExtResource("1_c5gbi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_002je")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_envqi")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Trail 2D" parent="." instance=ExtResource("3_ctbcs")]
+length = 50
+
+[connection signal="body_entered" from="." to="." method="_on_collide"]

@@ -10,9 +10,10 @@ config_version=5
 
 [application]
 
-config/name="SoundWatcher"
+config/name="The Fall"
 run/main_scene="res://World.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [display]
@@ -20,7 +21,7 @@ config/icon="res://icon.svg"
 window/size/viewport_width=640
 window/size/viewport_height=320
 window/stretch/mode="viewport"
-window/vsync/vsync_mode=0
+window/per_pixel_transparency/allowed=true
 
 [dotnet]
 
@@ -65,6 +66,20 @@ ui_mouse_0={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(105, 7),"global_position":Vector2(109, 50),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
+ui_mouse_1={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":2,"canceled":false,"pressed":false,"double_click":false,"script":null)
+]
+}
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Map"
+2d_physics/layer_3="Environment"
+2d_physics/layer_4="Items"
+2d_physics/layer_5="Enemies"
+2d_physics/layer_6="Bullet"
 
 [rendering]
 

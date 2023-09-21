@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://g8yt8djansui"]
 
 [ext_resource type="Texture2D" uid="uid://b0rdppqbkdt36" path="res://Assets/BlackWhiteTile.png" id="1_eaf8r"]
-[ext_resource type="PackedScene" uid="uid://bklq7o3myr1f6" path="res://Prefabs/Actors/Player.tscn" id="2_dc6de"]
+[ext_resource type="PackedScene" uid="uid://bklq7o3myr1f6" path="res://Actors/Player.tscn" id="2_dc6de"]
 [ext_resource type="Script" path="res://GameManager.gd" id="3_2p00c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gks60"]
@@ -169,9 +169,9 @@ layer_2/tile_data = PackedInt32Array()
 
 [node name="Player" parent="." instance=ExtResource("2_dc6de")]
 position = Vector2(72, 160)
-RATE_OF_ALT_FIRE = 0.1
-COIN_FORCE = 100
-COIN_UP_FORCE = 300
+RUN_SPEED = 150.0
+JUMP_FORCE = -300.0
+COIN_UP_FORCE = 250
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(200, 96)

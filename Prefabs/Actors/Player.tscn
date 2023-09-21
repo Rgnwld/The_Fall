@@ -1,0 +1,127 @@
+[gd_scene load_steps=20 format=3 uid="uid://bklq7o3myr1f6"]
+
+[ext_resource type="Script" path="res://Scripts/Player/PlayerBehaviour.gd" id="1_is74j"]
+[ext_resource type="Texture2D" uid="uid://c7we8nno2i4fd" path="res://Assets/player/Idle/player0.png" id="2_4d1q6"]
+[ext_resource type="Script" path="res://Scripts/Player/Camera2DBehaviour.gd" id="2_t4vmq"]
+[ext_resource type="Texture2D" uid="uid://bli7few24stjf" path="res://Assets/player/Idle/player1.png" id="3_bkglw"]
+[ext_resource type="Texture2D" uid="uid://c00kd08bk6b13" path="res://Assets/player/Idle/player2.png" id="4_p44wh"]
+[ext_resource type="Texture2D" uid="uid://bxy83ts34a0ov" path="res://Assets/player/Idle/player3.png" id="5_51kpi"]
+[ext_resource type="Texture2D" uid="uid://hxowku25mm3x" path="res://Assets/player/Jump/Player_Jump0.png" id="6_eif4b"]
+[ext_resource type="Texture2D" uid="uid://bmfd2q2sq3h07" path="res://Assets/player/Jump/Player_Jump1.png" id="7_hnum1"]
+[ext_resource type="Texture2D" uid="uid://cx1t1ius3cgpg" path="res://Assets/player/Jump/Player_Jump2.png" id="8_y3u1x"]
+[ext_resource type="Texture2D" uid="uid://kqi3mq4huchv" path="res://Assets/player/Jump/Player_Jump3.png" id="9_dcp43"]
+[ext_resource type="Texture2D" uid="uid://bkbkqtj0i04fj" path="res://Assets/player/Run/Player_Run0.png" id="10_fh6wj"]
+[ext_resource type="Texture2D" uid="uid://dxwcvyohs0d82" path="res://Assets/player/Run/Player_Run1.png" id="11_h38ng"]
+[ext_resource type="Texture2D" uid="uid://b3o5m8eluu7hb" path="res://Assets/player/Run/Player_Run2.png" id="12_fcb2f"]
+[ext_resource type="Texture2D" uid="uid://nuklayqqbvhw" path="res://Assets/player/Run/Player_Run3.png" id="13_lpdlb"]
+[ext_resource type="Texture2D" uid="uid://csuffnvx77y3" path="res://Assets/will ring.png" id="14_j3ruq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5pagd"]
+radius = 6.0
+height = 14.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0slf1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4d1q6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bkglw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_p44wh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_51kpi")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_eif4b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_hnum1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_y3u1x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_dcp43")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_fh6wj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_h38ng")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_fcb2f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_lpdlb")
+}],
+"loop": true,
+"name": &"run",
+"speed": 8.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_mk1sg"]
+offsets = PackedFloat32Array(0.00628931, 0.389937)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gqjij"]
+gradient = SubResource("Gradient_mk1sg")
+width = 512
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 22
+script = ExtResource("1_is74j")
+RUN_SPEED = 200.0
+JUMP_FORCE = -300.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 4.0
+script = ExtResource("2_t4vmq")
+max_camera_distance = 30.0
+smoothness = 0.05
+camera_offset = Vector2(0, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_5pagd")
+
+[node name="anim" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.064, 0.064)
+sprite_frames = SubResource("SpriteFrames_0slf1")
+animation = &"run"
+autoplay = "idle"
+frame_progress = 0.195981
+
+[node name="Gun" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Gun"]
+position = Vector2(13, 0)
+texture = ExtResource("14_j3ruq")
+
+[node name="Marker2D" type="Marker2D" parent="Gun"]
+position = Vector2(16, 0)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+blend_mode = 2
+texture = SubResource("GradientTexture2D_gqjij")
+texture_scale = 2.0
